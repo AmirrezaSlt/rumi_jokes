@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 style="font-size: 27px">Major</h1>
+    <form method="post" action="">
+        <div class="form-major">
+                {{ form.major }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+{% endblock content %}

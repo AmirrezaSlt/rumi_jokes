@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Style the body */
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+/* Header/Logo Title */
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #5f788a;
+  color: white;
+  font-size: 30px;
+}
+
+/* Page Content */
+.content {padding:20px;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Rumi Jokes</h1>
+  <p>Welcome</p>
+</div>
+
+<div style="text-align: center" class="content">
+{% if current_user.is_authenticated %}
+  <p>Your profile needs to be updated? <a href="{{ url_for('account') }}">User Profile</a></p>
+{% endif %}
+{% if not current_user.is_authenticated %}
+  <p>New to the site? <a href="{{ url_for('register') }}">register</a></p>
+  <p>Already a user? <a href="{{ url_for('login') }}">login</a></p>
+{% endif %}
+<p>Want to see the best jokes? <a href="{{ url_for('leaderboards') }}">Leaderboards</a></p>
+<p>Want to know more about the project? <a href="{{ url_for('about') }}">about</a></p>
+</div>
+</body>
+</html>
+

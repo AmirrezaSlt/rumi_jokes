@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form method="post">
+        {{ form.hidden_tag() }}
+            {% for joke in jokes %}
+                <article class="media content-section">
+                  <div class="media-body">
+                    <div>
+                    <style>
+                    .joke-selection {
+                      display: block;
+                      position: relative;
+                      padding-left: 35px;
+                      cursor: pointer;
+                      font-size: 17px;
+                      -webkit-user-select: none;
+                      -moz-user-select: none;
+                      -ms-user-select: none;
+                      user-select: none;
+                    }
+                    .joke-selection input {
+                      position: absolute;
+                      opacity: 0;
+                      cursor: pointer;
+                    }
+                    .checkmark {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      height: 25px;
+                      width: 25px;
+                      background-color: #eee;
+                      border-radius: 50%;
+                    }
+                    .joke-selection:hover input ~ .checkmark {
+                      background-color: #ccc;
+                    }
+                    .joke-selection input:checked ~ .checkmark {
+                      background-color: #5f788a;
+                    }
+                    .checkmark:after {
+                      content: "";
+                      position: absolute;
+                      display: none;
+                    }
+                    .joke-selection input:checked ~ .checkmark:after {
+                      display: block;
+                    }
+                    .joke-selection .checkmark:after {
+                        top: 9px;
+                        left: 9px;
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background: white;
+                    }
+                    </style>
+                     <label class="article-content joke-selection">{{ joke.content }}
+                     <input id="jokes-{{ loop.index0 }}" name="jokes" type="radio" value="{{ loop.index0 }}">
+                     <span class="checkmark"></span>
+                     </label>
+                    </div>
+                  </div>
+                </article>
+            {% endfor %}
+        <div style="text-align: center" class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+
+    </form>
+{% endblock content %}
+
