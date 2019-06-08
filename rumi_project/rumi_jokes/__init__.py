@@ -7,13 +7,13 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost:3306/dbms'
-app.config['MONGOALCHEMY_DATABASE'] = 'dbms'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost:3306/rumi'
+app.config['MONGOALCHEMY_DATABASE'] = 'rumi'
 app.config['MONGOALCHEMY_SERVER'] = '127.0.0.1'
 app.config['MONGOALCHEMY_PORT'] = '27019'
 app.config['MONGOALCHEMY_SAFE_SESSION'] = 'true'
-app.config['CASSANDRA_HOSTS'] = ['172.17.0.3']
-app.config['CASSANDRA_KEYSPACE'] = "dbms"
+app.config['CASSANDRA_HOSTS'] = ['127.0.0.1']
+app.config['CASSANDRA_KEYSPACE'] = "rumi"
 
 db = SQLAlchemy(app)
 db2 = MongoAlchemy(app)
