@@ -19,7 +19,7 @@ services:
       - ./data/mongodb/db:/data/db
       - ./data/mongodb/configdb:/data/configdb
     expose:
-      - "27019"
+      - "27017"
     ports:
       - "27019:27017"
     restart: always

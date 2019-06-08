@@ -10,9 +10,9 @@ app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysql@localhost:3306/dbms'
 app.config['MONGOALCHEMY_DATABASE'] = 'rumi'
 app.config['MONGOALCHEMY_SERVER'] = 'db-mongo'
-app.config['MONGOALCHEMY_PORT'] = '27019'
+app.config['MONGOALCHEMY_PORT'] = '27017'
 app.config['MONGOALCHEMY_SAFE_SESSION'] = 'true'
-app.config['CASSANDRA_HOSTS'] = ['172.17.0.3']
+app.config['CASSANDRA_HOSTS'] = ['db-cassandra']
 app.config['CASSANDRA_KEYSPACE'] = "dbms"
 
 db = SQLAlchemy(app)
