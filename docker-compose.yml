@@ -31,6 +31,8 @@ services:
       - "9042"
     ports:
       - "9042:9042"
+    environment:
+      rpc_address: cassandra
     restart: always
   python:
     build: .
