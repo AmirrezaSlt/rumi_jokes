@@ -1,8 +1,10 @@
 sudo: required
 services:
   -docker
+before_install:
+  - sudo docker build -t amirrezasalamat/rumi_jokes_python
 script:
-  -docker build  -t amirrezasalamat/rumi_jokes ./
+  - sudo docker-compose up -d
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push amirrezasalamat/rumi_jokes
+  - docker push amirrezasalamat/rumi_jokes_python
