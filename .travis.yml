@@ -2,7 +2,7 @@ sudo: required
 services:
   -docker
 env:
-  - DOCKER_COMPOSE_VERSION=3.7
+  - DOCKER_COMPOSE_VERSION=1.23.1
 before_install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
@@ -11,6 +11,8 @@ before_install:
   - sudo docker build -t amirrezasalamat/rumi_jokes_python .
 script:
   - sudo docker-compose up -d
+after_script:
+  - docker-compose down
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push amirrezasalamat/rumi_jokes_python
