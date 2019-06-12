@@ -4,7 +4,7 @@ services:
     image: mysql
     volumes:
       - ./data/mysql:/var/lib/mysql
-      - ./build/schema/mysql:/docker-entrypoint-initdb.d
+      - ./build/mysql/schema:/docker-entrypoint-initdb.d
     command: --default-authentication-plugin=mysql_native_password
     expose:
       - "3306"
