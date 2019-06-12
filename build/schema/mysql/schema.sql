@@ -1,29 +1,24 @@
-USE dbms;
-DROP TABLE IF EXISTS recommendations;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS majors;
-CREATE TABLE majors
+CREATE DATABASE IF NOT EXISTS rumi;
+USE rumi;
+CREATE TABLE IF NOT EXISTS majors
 (
   id   INT AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   PRIMARY KEY (id)
 );
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (
     id INT AUTO_INCREMENT,
     username VARCHAR(255) UNIQUE,
     email VARCHAR(255),
     password VARCHAR(255) UNIQUE,
     image_file CHAR(20) NOT NULL DEFAULT "default.jpg",
-    mid INT,
+    major_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (mid) REFERENCES
+    FOREIGN KEY (major_id) REFERENCES
     majors(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
-# INSERT INTO majors(name) VALUES('Engineering');
-# INSERT INTO majors(name) VALUES('Business');
-# INSERT INTO majors(name) VALUES('Anthropology');
-CREATE TABLE recommendations
+CREATE TABLE IF NOT EXISTS recommendations
 (
     id INT AUTO_INCREMENT,
     user_id INT,
@@ -35,4 +30,8 @@ CREATE TABLE recommendations
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES
     users(id) ON UPDATE CASCADE ON DELETE CASCADE
-)
+);
+INSERT INTO majors(name) VALUES('Engineering');
+INSERT INTO majors(name) VALUES('Business');
+INSERT INTO majors(name) VALUES('Anthropology');
+# INSERT INTO users(username, email, password, major_id, )
