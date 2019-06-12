@@ -29,6 +29,8 @@ services:
     image: cassandra
     volumes:
       - ./data/cassandra:/var/lib/cassandra
+      - ./build/cassandra/docker-entrypoint.sh:/docker-entrypoint.sh
+      - ./build/cassandra/schema:/docker-entrypoint-initdb.d
     expose:
       - "9042"
     ports:
