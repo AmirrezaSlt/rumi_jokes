@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  db-mysql:
+    image: mysql
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./build/mysql/schema:/docker-entrypoint-initdb.d
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: rumi
+  db-mongo:
+    image: mongo
+    command: mongod --storageEngine=wiredTiger
+    volumes:
+      - ./data/mongodb/db:/data/db
+      - ./data/mongodb/configdb:/data/configdb
+    ports:
+      - "27019:27017"
+    restart: always
+  db-cassandra:
+    image: cassandra
+    volumes:
+      - ./data/cassandra:/var/lib/cassandra
+      - ./build/cassandra/docker-entrypoint.sh:/docker-entrypoint.sh
+      - ./build/cassandra/schema:/docker-entrypoint-initdb.d
+    ports:
+      - "9042:9042"
+    environment:
+      rpc_address: cassandra
+    restart: always
+  python:
+    image: amirrezasalamat/rumi_jokes_python
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db-cassandra
+      - db-mongo
+      - db-mysql
+    deploy:
+      replicas: 3
+
+
