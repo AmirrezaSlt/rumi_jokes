@@ -30,7 +30,7 @@ MongoAlchemy==0.19
 mysql-connector-python-rf==2.2.2
 numpy==1.16.3
 pandas==0.24.2
-Pillow==6.0.0
+Pillow==9.0.1
 protobuf==3.7.1
 pycparser==2.19
 pymongo==2.8.1
