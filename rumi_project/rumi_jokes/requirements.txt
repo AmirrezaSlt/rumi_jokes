@@ -28,7 +28,7 @@ Markdown==3.1
 MarkupSafe==1.1.1
 MongoAlchemy==0.19
 mysql-connector-python-rf==2.2.2
-numpy==1.16.3
+numpy==1.22.0
 pandas==0.24.2
 Pillow==6.0.0
 protobuf==3.7.1
